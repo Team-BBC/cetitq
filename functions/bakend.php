@@ -1,7 +1,4 @@
 <?php
-/**
- * https://www.siteground.com/tutorials/php-mysql/display-table-data/
- */
 class dbConnect{
 	public $mysqli;
 	function __construct()
@@ -34,51 +31,55 @@ class dbConnect{
 	              </tr>
 	            </thead>';
 	}
-	
+	/*
+<a href='?id=$row[id]'>
+	<img src='imagenes/editar.png'>
+</a>
+
+<a href='?id=$row[id]'>
+	<img src='imagenes/editar.png'>
+</a>
+	*/
 
 	public function displayAll() {
-		$stmt = $this->mysqli->prepare('select * from document order by fecha desc limit 20');
-		$stmt->execute();
+		$query = $this->mysqli->prepare('select * from htq_ficheros order by fecha desc limit 20');
+		$query->execute();
 
-		$result = $stmt->get_result();
+		$result = $query->get_result();
 		$table = '';
 		while($row = $result->fetch_assoc()){
 			$table.="<tr>";
+			$table.="<td style='display:none;'>$row[id]</td>";
 			$table .= "<td>$row[sustancia]</td>";
 			$table .= "<td>$row[fecha]</td>";
 			$table .= "<td class='text-center'> 
 				<span class='btn btn-warning btn-sm editbtn'>
-					<a href='?id=$row[id]'>
-						<img src='imagenes/editar.png'>
-					</a>
+					<img src='imagenes/editar.png'>
 				</span>
 			</td>";
 			$table .= "<td class='text-center'> 
-				<span class='btn btn-danger btn-sm deletebtn'>
-					<a href='?id=$row[id]'>
-						<img src='imagenes/editar.png'>
-					</a>
+				<span class='btn btn-danger btn-sm deletebtn'>				
+					<img src='imagenes/borrar.png'>
 				</span>
 			</td>";
 			$table .= "<td class='text-center'> 
 				<span class='btn btn-info btn-sm'>
 					<a href='ficheros/$row[url]' target='_blank'>
-						<img src='imagenes/descargar.png'>
-					</a>
+					<img src='imagenes/descargar.png'>
 				</span>
 			</td>";
 			$table .= "</tr>";
 			//$table .= "<td><a hre=\"editar.php?id=$row[id] \"Edit</a></td>";
 		}
 		echo($table);
-		$stmt->close();
+		$query->close();
 		//table header
 		echo "</table>";
 		$this->mysqli->close();
 	}
 
 	public function display() {
-		$query = 'select * from document order by fecha desc limit 25';
+		$query = 'select * from htq_ficheros order by fecha desc limit 25';
 		if($result = $this->mysqli->query($query)){
 			while($row = $result->fetch_assoc()){
 				//table content

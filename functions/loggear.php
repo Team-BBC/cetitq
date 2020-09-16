@@ -5,7 +5,7 @@ session_start();
 
 $usuario = $_POST['username'];
 $password = $_POST['password'];
-$stmt = $myObj->mysqli->prepare('select * from users where username = ? and password=?');
+$stmt = $myObj->mysqli->prepare('select * from htq_users where username = ? and password=?');
 $stmt->bind_param('ss', $usuario, $password);
 
 

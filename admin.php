@@ -62,8 +62,9 @@ $myObj = new dbConnect();
             </div>
 
             <!--agregar nuevo registro-->
+            <h3 class="text-light">Favor de no utilizar acentos</h3>
             <div class=" container-fluid border border-dark rounded " style="float:rigth; background: white;height: auto;width: 25%;margin-top: 20px; margin-right: 8px">
-                <form action="functions/creator.php"method="post" enctype="multipart/form-data" style="width: 75%">
+                <form action="functions/creator.php" method="post" enctype="multipart/form-data" style="width: 75%">
                         <div class="form-group" style="margin-top: 8px">
                             <label>Nombre de la sustancia</label>
                             <input type="text" class="form-control" name="nombre">
@@ -79,10 +80,17 @@ $myObj = new dbConnect();
                         <input type="submit" class="btn btn-primary mb-3" value="Enviar"  name="ok">
                 </form>
             </div>
+
+
         </div><!--Termina Contenido-->
         <script src="admin/script.js"></script>
         <link rel= "stylesheet"  type="text/css"  href="../libraries/stylesheet.css"/>
         
         <!--Pie de Pagina-->
+        <?php
+            require 'views/modalDelete.php';
+            require 'views/modalUpdate.php';
+        ?>
+        <script src="script.js"></script>
     </body>
 </html>
