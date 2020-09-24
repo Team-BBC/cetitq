@@ -79,7 +79,7 @@ if($_FILES['fichero']['name']!=null){
 					echo"Volver a modificar hubo un error";
 				}else{
 					echo"El archivo no se subio a la base de datos pero se modifico el nombre del archivo\n para que no existan errores con este pdf volver a descargarlo y agregar como un nuevo registro";
-					echo "<a href='ficheros/$oldName'";
+					echo "<a href='ficheros/$oldName'>archivo</a>";
 				}
 			}
 		}else{
