@@ -73,14 +73,10 @@
 	                </div>
 	            </div>
 			</div>
-			<!--footer-->
-			<div id="footer">
-				
-			</div>
-
+			
+			
 		</div> <!--termina contenido-->
-		<script>
-			feather.replace();
-		</script>
+		<!--footer-->
+		<?php require 'views/footer.php';?>
 	</body>
 </html>

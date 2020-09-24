@@ -7,6 +7,8 @@
           <h4 class="modal-title">Borrar Sustancia</h4>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         </div>
+
+        
         <div class="modal-body">
           <div id="txt" name="sustancia" class="font-weight-normal">
           </div>

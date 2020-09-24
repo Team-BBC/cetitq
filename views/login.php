@@ -12,7 +12,7 @@ if(isset($_SESSION['username'])){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             
     <!-- Bootstrap CSS -->
-    <?php include"../libraries/libraries.php"?>
+    <?php require'../libraries/libraries.php'?>
     <title> Inicio de Sesion</title>
 
 </head>
@@ -20,8 +20,8 @@ if(isset($_SESSION['username'])){
 
     <div id="content">
         <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #03204C;">
-            <a class="navbar-brand" href="index.php">
-                <!--<img src="v5/hojasTq/Ceti.png.webp" width="30" height="30" class="d-inline-block align-top" alt="">-->
+            <a class="navbar-brand" href="../index.php">
+                <img src="../imagenes/Ceti.png.webp" width="30" height="30" class="d-inline-block align-top" alt="">
                 Inicio
                 </a>
         </nav>  
@@ -38,7 +38,6 @@ if(isset($_SESSION['username'])){
                 <div class="form-group mx-auto " style="width: 60%;margin-top: 20px">
                     <button id="login" type="submit" class="btn btn-primary" style="margin-top: 35px;margin-bottom: 30px" >Entrar</button>
                 </div>
-                
             </form> 
             <script src="script.js"></script>
         </div>        
@@ -46,8 +45,9 @@ if(isset($_SESSION['username'])){
         
     </div>
 
+
     <!--footer -->
-
-    
-
+    <?php
+        require 'footer.php';
+    ?>
 </body>

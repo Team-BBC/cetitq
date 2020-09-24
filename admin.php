@@ -82,15 +82,14 @@ $myObj = new dbConnect();
             </div>
 
 
-        </div><!--Termina Contenido-->
-        <script src="admin/script.js"></script>
-        <link rel= "stylesheet"  type="text/css"  href="../libraries/stylesheet.css"/>
-        
+        </div><!--Termina Contenido-->        
         <!--Pie de Pagina-->
         <?php
             require 'views/modalDelete.php';
-            require 'views/modalUpdate.php';
+            require 'views/newModalUpdate.php';
         ?>
         <script src="script.js"></script>
+
+        <?php require'views/footer.php';?>
     </body>
 </html>

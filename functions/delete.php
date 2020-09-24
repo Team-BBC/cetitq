@@ -1,4 +1,5 @@
 <?php
+!isset($_POST) ? die("Acceso denegado") :"";
 require 'bakend.php';
 $con = new dbConnect();
 
@@ -22,5 +23,4 @@ if(unlink("../ficheros/$nombre_sustancia.pdf") && $stmt->execute()){
 }else{
 	echo "error al eliminar el archivo o borrar de la base de datos.";
 }
-
 ?>

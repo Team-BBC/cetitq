@@ -6,7 +6,7 @@ class dbConnect{
 		$this->mysqli = new mysqli('localhost', 'root', '', 'hojastq');
 		if (mysqli_connect_errno()) {
 			return false;
-			exit('Failed to connect to Mysql: ' .mysqli_connect_errno());
+			exit('Fallo en la conexion con la base de datos ' .mysqli_connect_errno());
 		}
 	}
 	public function aPlaceTableHeader(){
@@ -89,7 +89,7 @@ class dbConnect{
 				<td class="text-center">
 					<span class="btn btn-info btn-sm ">                      
 					<a href = "ficheros/'.$row['url'].'" target="_blank">
-						<i data-feather="download"> </i>
+						<img src="imagenes/descargar.png">
 					</a>
 					</span>
 					

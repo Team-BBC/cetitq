@@ -36,7 +36,7 @@ if(isset($_POST['ok'])){
             echo"Verifica que sea .pdf";
         }else{
             //si mueve el archivo con exito, sube a la base de datos.
-            if(move_uploaded_file($file_tmp, "../ficheros/".$file_name)){
+            if(move_uploaded_file($file_tmp, "../ficheros/".$destinoBD)){
                 $query = $myObj->mysqli->prepare('insert into htq_ficheros(sustancia, url, fecha) values(?, ?, NOW())');
                 $query->bind_param('ss', $nombre, $destinoBD);
                 $query->execute();
