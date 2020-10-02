@@ -99,9 +99,14 @@ class dbConnect{
 			}    
 			$result->free();
 			echo "</table>";
+			//$query->close();
 			$this->mysqli->close();
 		  
 		}
+	}
+
+	public function uSearch(){
+		
 	}
 }
 ?>
