@@ -33,7 +33,7 @@ $myObj = new dbConnect();
 
             <!--barra de busqueda & resultados-->
             <div class=" container-fluid border border-dark rounded ml-3" style="float:left;background: white;height:auto ;width: 70%;margin-top: 20px;margin-bottom: 5px">
-                <form method="GET">
+                <form action="views/adminSearch.php" method="post">
                     <div class="form-group text-left" style="margin-top: 10px">
                         <input class="form-control m-auto mt-1" style="width: 60%; float: left;" type="text" name="search" placeholder="Escribe una Sustancia" id="search" required/>
                         <input type="submit" name="btnSearch" value="Buscar">
@@ -48,12 +48,8 @@ $myObj = new dbConnect();
                             <h4>Resultados</h4>                                       
                                 <div>
                                      <?php
-                                        if (isset($_POST['btnSearch'])) {
-                                          require 'admin/adminSearch.php';
-                                        }else{
-                                          $myObj->aPlaceTableHeader();
-                                          $myObj->displayAll();
-                                        }
+                                        $myObj->aPlaceTableHeader();
+                                        $myObj->displayAll();
                                     ?>
                                 </div>                                                                   
                         </div>

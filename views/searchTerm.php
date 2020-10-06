@@ -4,39 +4,9 @@ if(!$_POST){
 }
 include "../functions/bakend.php";
 $myObj = new dbConnect();
+
+$likeSustancia = $_POST["search"];
 ?>
-<?php
-$likeSustancia = $_POST['search'];
-echo $likeSustancia;
-
-    $stmt = $myObj->mysqli->prepare("select sustancia from htq_ficheros where sustancia like'%?%' limit 15");
-    $stmt->bind_param('s', $likeSustancia);
-    $stmt->execute();
-    $stmt->bind_result($nombSustancia);
-
-    while($stmt->fetch()){
-        //table content
-        $datosTabla = "";
-        $datosTabla = $datosTabla.'<tr>
-        <td >'.$nombSustancia.'</td>
-        <td class="text-center">
-            <span class="btn btn-info btn-sm ">                      
-            <a href = "../ficheros/'.$nombSustancia.'.pdf" target="_blank">
-                <img src="imagenes/descargar.png">
-            </a>
-            </span>
-        </td>
-        </tr>';   
-        echo $datosTabla;
-    }
-    echo "</table>";
-    $stmt->close();
-    $myObj->mysqli->close();
-
-
-?>
-<?php
-/*
 <!DOCTYPE html>
 <html>
 	<head>
@@ -60,9 +30,19 @@ echo $likeSustancia;
 		<div id="wrap">
 			<!--main page-->
 			<div id="content">
-				<?php
-					include "navbar.php";
-				?>
+			<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #03204C;">
+				<a class="navbar-brand" href="../index.php">
+					<!--<img src="v5/hojasTq/Ceti.png.webp" width="30" height="30" class="d-inline-block align-top" alt="">-->
+					Inicio
+					</a>
+					<button class="btn btn-primary my-2 my-sm-0" id="btnLogin">Login</button>
+			</nav>
+
+			<script type="text/javascript">
+				document.getElementById("btnLogin").onclick = function (){
+					location.href = "login.php";
+				};
+			</script>
 				<nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="../index.php">Inicio</a></li>
@@ -70,7 +50,7 @@ echo $likeSustancia;
                     </ol>
                 </nav>
 				<!--barra de busqueda & resultados-->
-	        	<form action="../functions/search.php" method="post">
+	        	<form action="#" method="post">
 	                <div class="form-group text-center">
 	                    <input class="form-control m-auto mt-1" style="width: 60%;" type="text" name="search" placeholder="Escribe una Sustancia" required/>
 	                    <input type="submit" value="Buscar">
@@ -92,7 +72,7 @@ echo $likeSustancia;
 	                                    <div class="col-sm-12 m-auto">
 											<?php 
 												$myObj->uPlaceTableHeader();
-	                                    		$myObj->display();
+												$myObj->uSearch($likeSustancia);
 	                                    	?>
 	                                    </div>
 	                                </div>
@@ -101,12 +81,8 @@ echo $likeSustancia;
 	                    </div>
 	                </div>
 	            </div>
-			</div>
-			
-			
 		</div> <!--termina contenido-->
 		<!--footer-->
 		<?php require 'footer.php';?>
 	</body>
 </html>
-*/?>
