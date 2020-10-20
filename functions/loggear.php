@@ -9,16 +9,16 @@ $password = $_POST['password'];
 $stmt = $myObj->mysqli->prepare('select * from htq_users where username = ? and password=?');
 $stmt->bind_param('ss', $usuario, $password);
 $stmt->execute();
+$stmt->store_result();
 
-$result = $stmt->get_result();
-$row =$result->fetch_assoc();
-
-if($row!=null){
-    $stmt->close();
+if($stmt->num_rows()==1){
     $_SESSION['username'] = $usuario;
-    header("location: ../admin.php");
+    header("Location: ../admin.php");
+    $stmt->close();
+    $myObj->mysqli->close();
+    exit;
 }else{
-    echo"Datos Incorrectos";
+    echo "Datos no coinciden con un usuario";
 }
+$stmt->close();
 $myObj->mysqli->close();
-?>

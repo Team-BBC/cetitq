@@ -1,10 +1,14 @@
 <?php
+
+
+!isset($_POST) ? die("Access denied") : "";
+header('Content-Type: text/html; charset=UTF-8');
+
 require "bakend.php";
 $myObj = new dbConnect();
 
-!isset($_POST) ? die("Access denied") : "";
-
 if(isset($_POST['ok'])){
+    header('Content-Type: text/html; charset=UTF-8');
     //variables
     $nombre = $_POST['nombre'];
     $file_name = $_FILES['fichero']['name'];
@@ -12,7 +16,7 @@ if(isset($_POST['ok'])){
     //convertir a minusculas
     $nombre = strtolower($nombre);
     $destinoBD = "$nombre.pdf";
-
+    
     $acceptedarr = array("pdf");
     $extension = pathinfo($file_name, PATHINFO_EXTENSION);
 
@@ -21,11 +25,9 @@ if(isset($_POST['ok'])){
     $stmt->bind_param('s', $nombre);
 
     $stmt->execute();
+    $stmt->store_result();
 
-    $result = $stmt->get_result();
-    $row =$result->fetch_assoc();
-
-    if($row!=null){
+    if($stmt->num_rows()==1){
         $stmt->close();
         die('Este archivo ya existe');
     }else{
@@ -51,4 +53,3 @@ if(isset($_POST['ok'])){
         }
     }
 }
-?>

@@ -63,7 +63,7 @@
 	                                    <div class="col-sm-12 m-auto">
 											<?php 
 												$myObj->uPlaceTableHeader();
-	                                    		$myObj->display();
+												$myObj->display();
 	                                    	?>
 	                                    </div>
 	                                </div>

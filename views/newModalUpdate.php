@@ -12,7 +12,10 @@
 
 				<div class="modal-body">
 					<label for="sustancia">Nombre de la Sustancia</label>
-					<input type="text" name="sustancia", id="sustancia" class="form-control form-control-sm"><br>
+					<input type="text" name="sustancia" 
+					oninvalid="this.setCustomValidity('Favor de no utilizar acentos o caracteres especiales')"
+					 oninput="this.setCustomValidity('')" id="sustancia" class="form-control form-control-sm"
+					 pattern="[a-zA-Z0-9]*"><br>
 					<br>
 					<div class="custom-file">
 						<label for="fichero">PDF</label>

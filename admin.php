@@ -12,19 +12,18 @@ $myObj = new dbConnect();
 <!DOCTYPE html>
 <html>
 <head>
-        <!--favicon-->
-        <link rel="shortcut icon" type="image/png" href="../imagenes/manetologo1.png"/>
-        <!-- Required meta tags -->
-        <meta name="robots" content="noindex">
-        
-        <!-- Bootstrap CSS and js libraries -->
-        <?php
-            require 'libraries/libraries.php';
-        ?>
-        
-        <title> Administrador </title>
-        
-    </head>
+    <!--favicon-->
+    <link rel="shortcut icon" type="image/png" href="../imagenes/manetologo1.png"/>
+    <!-- Required meta tags -->
+    <meta name="robots" content="noindex">
+    <!-- Bootstrap CSS and js libraries -->
+    <?php
+        require 'libraries/libraries.php';
+    ?>
+    
+    <title> Administrador </title>
+</head>
+
     <body style="background-image: url(imagenes/bg.png);">
         <div id="content">
             <?php
@@ -50,6 +49,7 @@ $myObj = new dbConnect();
                                      <?php
                                         $myObj->aPlaceTableHeader();
                                         $myObj->displayAll();
+                                        
                                     ?>
                                 </div>                                                                   
                         </div>
@@ -58,17 +58,16 @@ $myObj = new dbConnect();
             </div>
 
             <!--agregar nuevo registro-->
-            <h3 class="text-light">Favor de no utilizar acentos</h3>
             <div class=" container-fluid border border-dark rounded " style="float:rigth; background: white;height: auto;width: 25%;margin-top: 20px; margin-right: 8px">
                 <form action="functions/creator.php" method="post" enctype="multipart/form-data" style="width: 75%">
                         <div class="form-group" style="margin-top: 8px">
                             <label>Nombre de la sustancia</label>
-                            <input type="text" class="form-control" name="nombre">
+                            <input type="text" oninvalid="this.setCustomValidity('Favor de no utilizar acentos o caracteres especiales')" oninput="this.setCustomValidity('')" class="form-control" name="nombre" pattern="[a-zA-Z0-9]*" id="substance">
                         </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput2">PDF</label>
                             <div class="custom-file">
-                                <input type="file"  class="custom-file-input" name="fichero" accept=".pdf" required>
+                                <input type="file"  class="custom-file-input" name="fichero" accept=".pdf">
                                 <label class="custom-file-label" for="archivopdf" data-browse="Seleccionar">Escojer archivo...</label>
                                 <div class="invalid-feedback">Example invalid custom file feedback</div>
                             </div>
@@ -86,6 +85,6 @@ $myObj = new dbConnect();
         ?>
         <script src="script.js"></script>
 
-        <?php require'views/footer.php';?>
+        <?php require('views/footer.php');?>
     </body>
 </html>
