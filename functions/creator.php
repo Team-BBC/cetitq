@@ -1,5 +1,4 @@
 <?php
-
 require "bakend.php";
 $myObj = new dbConnect();
 
@@ -47,7 +46,7 @@ if(isset($_POST['ok'])){
                     echo '<script type="text/javascript"> alert("Error al subir archivo"); </script> ';
                 }
             }else{
-                echo 'Error al copiar archivo en /ficheros';                
+                echo 'Error al copiar archivo en /ficheros';
             }
         }
     }
