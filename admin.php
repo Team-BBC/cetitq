@@ -62,12 +62,12 @@ $myObj = new dbConnect();
                 <form action="functions/creator.php" method="post" enctype="multipart/form-data" style="width: 75%">
                         <div class="form-group" style="margin-top: 8px">
                             <label>Nombre de la sustancia</label>
-                            <input type="text" oninvalid="this.setCustomValidity('Favor de no utilizar acentos o caracteres especiales')" oninput="this.setCustomValidity('')" class="form-control" name="nombre" pattern="[a-zA-Z0-9]*" id="substance">
+                            <input type="text" oninvalid="this.setCustomValidity('Favor de no utilizar acentos o caracteres especiales')" oninput="this.setCustomValidity('')" class="form-control" name="nombre" pattern="[a-zA-Z0-9\s]*" id="substance">
                         </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput2">PDF</label>
                             <div class="custom-file">
-                                <input type="file"  class="custom-file-input" name="fichero" accept=".pdf">
+                                <input type="file"  class="custom-file-input" name="fichero" accept=".pdf" required>
                                 <label class="custom-file-label" for="archivopdf" data-browse="Seleccionar">Escojer archivo...</label>
                                 <div class="invalid-feedback">Example invalid custom file feedback</div>
                             </div>

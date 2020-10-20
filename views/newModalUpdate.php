@@ -1,7 +1,7 @@
 <div class="modal fade" id="actualizarModal">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form action="functions/update.php" method="post" enctype="multipart/form-data">
+			<form action="/cetihs/functions/update.php" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="per" id="per">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">Actualizar Hoja de Seguridad</h5>
@@ -15,7 +15,7 @@
 					<input type="text" name="sustancia" 
 					oninvalid="this.setCustomValidity('Favor de no utilizar acentos o caracteres especiales')"
 					 oninput="this.setCustomValidity('')" id="sustancia" class="form-control form-control-sm"
-					 pattern="[a-zA-Z0-9]*"><br>
+					 pattern="[a-zA-Z0-9\s]*"><br>
 					<br>
 					<div class="custom-file">
 						<label for="fichero">PDF</label>

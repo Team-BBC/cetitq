@@ -1,7 +1,7 @@
 <div id="deleteModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="functions/delete.php" method="post">
+      <form action="/cetihs/functions/delete.php" method="post">
         <input type="hidden" name="id" id="id">
         <div class="modal-header">
           <h4 class="modal-title">Borrar Sustancia</h4>

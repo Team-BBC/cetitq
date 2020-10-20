@@ -11,19 +11,14 @@ $destinoBD = "$nomb_sustancia.pdf";
 
 $oldName = getOldName($mes, $id_sustancia);
 
-$st = $mes->mysqli->prepare("select * from htq_ficheros where sustancia=?");
-$st->bind_param('s', $nomb_sustancia);
-$st->execute();
-$st->store_result();
-if($st->num_rows()>0){
-	echo"Este archivo ya existe en la base de datos.";
-	$st->close();
-	$mes->mysqli->close();
-	exit();
+$bandera = false;
+if ($oldName == $nomb_sustancia && $_FILES['fichero']['name']!=null){
+	$bandera = modifyPDFOnly($nomb_sustancia, $mes, $bandera);
 }
 
 
-if($_FILES['fichero']['name']!=null){
+
+if($_FILES['fichero']['name']!=null && !$bandera){
 	//update name and new file incoming
 	nameFileUpdate($nomb_sustancia, $destinoBD, $id_sustancia, $mes, $oldName);
 }else{
@@ -31,6 +26,27 @@ if($_FILES['fichero']['name']!=null){
 	nameUpdate($mes, $nomb_sustancia, $destinoBD, $id_sustancia, $oldName);
 }
 
+
+//function that modifies the pdf only
+function modifyPDFOnly($nomb_sustancia, $mes){
+	$file_name = $_FILES['fichero']['name'];
+	$file_tmp = $_FILES['fichero']['tmp_name'];
+	$acceptedarr = array("pdf");
+	$extension = pathinfo($file_name, PATHINFO_EXTENSION);
+
+	if(!in_array($extension, $acceptedarr)) {
+		echo"Verifica que el archivo sea pdf";
+	}else{
+		$tempo = move_uploaded_file($file_tmp, "../ficheros/$nomb_sustancia.pdf");
+		if($tempo){
+			header("Location: ../admin.php");
+			$mes->mysqli->close();
+		}else{
+			echo "Error al modificar el archivo";
+		}
+	}
+	return true;
+}
 
 
 function getOldName($mes, $id_sustancia)
@@ -49,6 +65,7 @@ function getOldName($mes, $id_sustancia)
 	return $oldName;
 }
 
+//function that modifies only the name 
 function nameUpdate($mes, $nomb_sustancia, $destinoBD, $id_sustancia, $oldName){
 	try{
 		//rename
@@ -83,20 +100,19 @@ function nameUpdate($mes, $nomb_sustancia, $destinoBD, $id_sustancia, $oldName){
 	}
 }
 
+//function that modifies the name and the pdf file
 function nameFileUpdate($nomb_sustancia, $destinoBD, $id_sustancia, $mes, $oldName){
 	
 	$file_name = $_FILES['fichero']['name'];
 	$file_tmp = $_FILES['fichero']['tmp_name'];
 	$file_name = strtolower($file_name);
-	$file_name = utf8_encode($file_name);
 	$acceptedarr = array("pdf");
 	$extension = pathinfo($file_name, PATHINFO_EXTENSION);
-	//do not forget to remove the old file. try to get the name with a select query before updating
 
 	if(!in_array($extension, $acceptedarr)) {
 		echo"Verifica que el archivo sea pdf";
 	}else{
-		$tempo = move_uploaded_file($file_tmp, "../ficheros/$file_name");
+		$tempo = move_uploaded_file($file_tmp, "../ficheros/$nomb_sustancia.pdf");
 		if($tempo){
 			$querys = $mes->mysqli->prepare("update htq_ficheros set sustancia=?, url=?, fecha=NOW() where id=?");
 			$querys->bind_param('ssi', $nomb_sustancia, $destinoBD, $id_sustancia);
