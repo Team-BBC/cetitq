@@ -3,7 +3,7 @@ class dbConnect{
 	public $mysqli;
 	function __construct()
 	{
-		$this->mysqli = new mysqli('localhost', 'cetihs', 'e536fb6e0', 'cetihs');
+		$this->mysqli = new mysqli('localhost', 'root', '', 'hojastq');
 		if (mysqli_connect_errno()) {
 			return false;
 			exit('Fallo en la conexion con la base de datos ' .mysqli_connect_errno());
