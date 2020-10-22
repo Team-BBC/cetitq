@@ -4,14 +4,17 @@ require "bakend.php";
 $myObj = new dbConnect();
 session_start();
 
+
 $usuario = $_POST['username'];
 $password = $_POST['password'];
-$stmt = $myObj->mysqli->prepare('select * from htq_users where username = ? and password=?');
-$stmt->bind_param('ss', $usuario, $password);
+$stmt = $myObj->mysqli->prepare('select password from htq_users where username = ?');
+$stmt->bind_param('s', $usuario);
 $stmt->execute();
-$stmt->store_result();
+$stmt->bind_result($contra);
+$stmt->fetch();
+$stmt->close();
 
-if($stmt->num_rows()==1){
+if(password_verify($password, $contra)){
     $_SESSION['username'] = $usuario;
     header("Location: ../admin.php");
     $stmt->close();
